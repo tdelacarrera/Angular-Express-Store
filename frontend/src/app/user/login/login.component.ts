@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup
+  loginError = false;
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private authService: AuthService, private router: Router){
     this.loginForm = this.fb.group({
@@ -22,6 +23,7 @@ export class LoginComponent {
   }
   
   onSubmit() {
+
     if (this.loginForm.valid) {
        const credentials = this.loginForm.value;
        this.apiService.loginUser(credentials).subscribe({
@@ -31,6 +33,7 @@ export class LoginComponent {
         },
         error: error => {
           console.error('Error en el login:', error);
+          this.loginError = true;
         }}); 
     }  
  }

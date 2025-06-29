@@ -27,10 +27,16 @@
         <label for="confirm_password" class="form-label">Confirmar Contraseña</label>
         <input type="password" class="form-control" id="confirm_password" placeholder="Confirma tu contraseña" formControlName="confirm_password" required>
       </div>
-      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="alert alert-danger mt-3" role="alert">
-        Debe confirmar la contrañseña
+      <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirm_password')?.touched"  class="alert alert-danger mt-3" role="alert">
+        Las contraseñas no coinciden.
       </div>
       <button type="submit" class="btn btn-primary w-100">Crear Cuenta</button>
       <p class="mt-3 text-center">¿Ya tienes cuenta? <a href="login">Iniciar sesión</a></p>
+      <div *ngIf="registerError" class="alert alert-danger mt-3" role="alert">
+        Error al crear una cuenta
+      </div>
+      <div *ngIf="registerSucess" class="alert alert-success mt-3" role="alert">
+        Cuenta creada exitosamente
+      </div>
     </form>
   </div>

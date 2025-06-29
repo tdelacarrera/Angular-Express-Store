@@ -20,7 +20,6 @@ export class ProductDetailComponent implements OnInit {
   productRemoved = false;
   quantityError = false;
   addToCartForm: FormGroup
-  messageTimeout = 3000;
   baseApiUrl = "";
 
   constructor(private apiService: ApiService, private cartService: CartService, private _route: ActivatedRoute, private fb: FormBuilder) {
@@ -47,7 +46,7 @@ export class ProductDetailComponent implements OnInit {
     setTimeout(() => {
       this.productRemoved = true;
     },
-    this.messageTimeout
+    3000
     );
   }
 
@@ -78,7 +77,7 @@ export class ProductDetailComponent implements OnInit {
       this.productAdded = false;
       this.productUpdated = false;
       this.quantityError = false;
-    }, this.messageTimeout
+    }, 3000
     );
   }
 }

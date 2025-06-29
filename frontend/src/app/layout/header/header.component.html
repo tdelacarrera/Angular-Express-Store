@@ -10,7 +10,7 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/products">Productos</a>
           </li>
-          <li class="nav-item">
+           <li *ngIf="!isAdmin && isAuth" class="nav-item">
             <a class="nav-link" routerLink="/cart">Carrito</a>
           </li>
           <li *ngIf="isAdmin && isAuth" class="nav-item">
