@@ -1,0 +1,33 @@
+  <!-- Contenido principal -->
+  <div class="container my-5">
+
+    <!-- Botón para agregar nuevo usuario -->
+    <h2 class="mb-4">Gestión de Usuarios</h2>
+    <button class="btn btn-primary mb-3" (click)="openCreateModal()">Agregar Nuevo Usuario</button>
+
+    <!-- Tabla de usuarios -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Rol</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let user of users">
+        <tr>
+          <td>{{user?.id}}</td>
+          <td>{{user?.name}}</td>
+          <td>{{user?.email}}</td>
+          <td>{{user?.role}}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal" (click)="openEditModal(user)">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="openDeleteModal(user)">Eliminar</button>
+          </td>
+        </tr>
+        <!-- Más usuarios pueden ir aquí -->
+      </tbody>
+    </table>
+  </div>

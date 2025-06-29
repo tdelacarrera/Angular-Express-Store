@@ -1,0 +1,39 @@
+<!-- Detalle del producto -->
+<div class="container my-5">
+  <div class="row">
+    <!-- Imagen del producto -->
+    <div class="col-md-6 d-flex justify-content-center align-items-center">
+      <img src="{{baseApiUrl}}/uploads/{{product?.path}}" alt="Producto" class="product-img img-fluid">
+    </div>
+
+    <!-- Detalles del producto -->
+    <div class="col-md-6">
+      <h2 class="mb-3">{{product?.name}}</h2>
+      <p class="text-muted">{{product?.category}}</p>
+      <p class="lead">{{product?.price}}</p>
+      <p class="mb-4">{{product?.description}}</p>
+
+      <!-- Formulario para agregar al carrito -->
+      <form [formGroup]="addToCartForm" (ngSubmit)="onAddToCart()">
+        <div class="mb-3">
+          <label for="cantidad" class="form-label">Cantidad</label>
+          <input type="number" class="form-control" id="cantidad" formControlName="quantity">
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar al carro de compras</button>
+        <button type="button" class="btn btn-danger " (click)="onRemoveFromCart()">Quitar del carro de compras</button>
+        <div *ngIf="productAdded" class="alert alert-success mt-3" role="alert">
+          Producto agregado al carro de compras
+        </div>
+        <div *ngIf="productUpdated" class="alert alert-success mt-3" role="alert">
+          Cantidad actualizada
+        </div>
+        <div *ngIf="productRemoved" class="alert alert-danger mt-3" role="alert">
+          Producto eliminado del carro de compras
+        </div>
+        <div *ngIf="quantityError" class="alert alert-danger mt-3" role="alert">
+          Debe ingresar una cantidad mayor a 0
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

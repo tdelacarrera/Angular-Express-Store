@@ -1,0 +1,24 @@
+
+  <!-- Formulario de Login -->
+  <div class="form-container">
+    <h3 class="text-center mb-4">Iniciar Sesión</h3>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico</label>
+        <input type="email" class="form-control" id="email" placeholder="Introduce tu correo" formControlName="email"  required>
+      </div>
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="alert alert-danger mt-3" role="alert">
+        correo invalido
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" placeholder="Introduce tu contraseña" formControlName="password" required>
+      </div>
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="alert alert-danger mt-3" role="alert">
+        contraseña invalida
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+      <p class="mt-3 text-center">¿No tienes cuenta? <a href="register">Regístrate</a></p>
+    </form>
+  </div>
+

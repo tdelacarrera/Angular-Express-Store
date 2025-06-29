@@ -1,0 +1,28 @@
+        <div>
+          <form id="editUserForm" [formGroup]="editModal" (ngSubmit)="onEdit()">
+            <input type="hidden" id="editUserId">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="name" formControlName="name" required>
+            </div>
+            <div *ngIf="editModal.get('name')?.invalid && editModal.get('name')?.touched" class="text-danger">
+              Debe introducir un nombre
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" id="email" formControlName="email" required>
+            </div>
+            <div *ngIf="editModal.get('email')?.invalid && editModal.get('email')?.touched" class="text-danger">
+              Debe introducir un correo
+            </div>
+            <div class="mb-3">
+              <label for="role" class="form-label" >Rol</label>
+              <select class="form-select" id="role" formControlName="role" required>
+                <option value="admin">admin</option>
+                <option value="client">client</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-warning w-100">Guardar Cambios</button>
+            <button type="button" class="btn btn-warning w-100" (click)="onCloseModal()">Cancelar</button>
+          </form>
+        </div>

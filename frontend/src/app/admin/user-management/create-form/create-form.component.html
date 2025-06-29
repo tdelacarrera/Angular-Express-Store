@@ -1,0 +1,41 @@
+<div>
+  <form id="addUserForm" [formGroup]="createModal" (ngSubmit)="onCreate()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="name" placeholder="Nombre completo" formControlName="name" required>
+    </div>
+    <div *ngIf="createModal.get('name')?.invalid && createModal.get('name')?.touched" class="text-danger">
+      Debe introducir un nombre
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Correo Electrónico</label>
+      <input type="email" class="form-control" id="email" placeholder="Correo electrónico"  formControlName="email" required>
+    </div>
+    <div *ngIf="createModal.get('email')?.invalid && createModal.get('email')?.touched" class="text-danger">
+      Debe introducir un correo
+    </div>
+    <div class="mb-3">
+      <label for="role" class="form-label">Rol</label>
+      <select class="form-select" id="role" formControlName="role" required>
+        <option value="admin">Administrador</option>
+        <option value="client">Cliente</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" id="password" placeholder="Contraseña" formControlName="password" required>
+    </div>
+    <div *ngIf="createModal.get('password')?.invalid && createModal.get('password')?.touched" class="text-danger">
+      Debe introducir una contraseña
+    </div>
+    <div class="mb-3">
+      <label for="confirm_password" class="form-label">Confirmar Contraseña</label>
+      <input type="password" class="form-control" id="confirm_password" placeholder="Confirmar Contraseña" formControlName="confirm_password" required>
+    </div>
+    <div *ngIf="createModal.get('confirm_password')?.invalid && createModal.get('confirm_password')?.touched" class="text-danger">
+      Debe confirmar la contraseña
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Agregar Usuario</button>
+    <button type="button" class="btn btn-warning w-100" (click)="onCloseModal()">Cancelar</button>
+  </form>
+</div>

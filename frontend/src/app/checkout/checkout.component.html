@@ -1,0 +1,85 @@
+  <!-- Checkout -->
+  <div class="container my-5">
+
+    <h2 class="mb-4">Resumen de la Compra</h2>
+
+    <!-- Resumen de la compra -->
+    <div class="row mb-4">
+      <div class="col-md-8">
+        <h5>Información de Envío</h5>
+        <form>
+          <div class="mb-3">
+            <label for="fullName" class="form-label">Nombre Completo</label>
+            <input type="text" class="form-control" id="fullName" placeholder="Tu nombre completo" required>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Dirección de Envío</label>
+            <input type="text" class="form-control" id="address" placeholder="Dirección de envío" required>
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label">Ciudad</label>
+            <input type="text" class="form-control" id="city" placeholder="Ciudad" required>
+          </div>
+          <div class="mb-3">
+            <label for="zip" class="form-label">Código Postal</label>
+            <input type="text" class="form-control" id="zip" placeholder="Código postal" required>
+          </div>
+          <div class="mb-3">
+            <label for="country" class="form-label">País</label>
+            <input type="text" class="form-control" id="country" placeholder="País" required>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <h5>Resumen de la Compra</h5>
+        <div class="card">
+          <div class="card-body">
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Camiseta de Algodón
+                <span>$19.99</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Auriculares Bluetooth
+                <span>$89.99</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Subtotal
+                <strong>$109.98</strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Envío
+                <span>$5.00</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Total</strong>
+                <strong>$114.98</strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Información de pago -->
+    <h5 class="mb-3">Información de Pago</h5>
+    <form>
+      <div class="mb-3">
+        <label for="cardName" class="form-label">Nombre en la tarjeta</label>
+        <input type="text" class="form-control" id="cardName" placeholder="Nombre en la tarjeta" required>
+      </div>
+      <div class="mb-3">
+        <label for="cardNumber" class="form-label">Número de tarjeta</label>
+        <input type="text" class="form-control" id="cardNumber" placeholder="Número de tarjeta" required>
+      </div>
+      <div class="mb-3">
+        <label for="expiryDate" class="form-label">Fecha de Expiración</label>
+        <input type="month" class="form-control" id="expiryDate" required>
+      </div>
+      <div class="mb-3">
+        <label for="cvv" class="form-label">CVV</label>
+        <input type="text" class="form-control" id="cvv" placeholder="CVV" required>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Realizar Pago</button>
+    </form>
+  </div>

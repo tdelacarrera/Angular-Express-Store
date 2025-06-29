@@ -1,0 +1,9 @@
+
+<div class="modal-body">
+  <p>¿Estás seguro de que deseas eliminar el producto {{ product.name }}</p>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-secondary" (click)="onCloseModal()">Cancelar</button>
+  <button class="btn btn-danger" (click)="onDelete(product.id)">Eliminar</button>
+</div>

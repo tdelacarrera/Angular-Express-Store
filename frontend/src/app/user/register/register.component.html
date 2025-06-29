@@ -1,0 +1,36 @@
+  <!-- Formulario de Registro -->
+  <div class="form-container">
+    <h3 class="text-center mb-4">Crear Cuenta</h3>
+    <form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre Completo</label>
+        <input type="text" class="form-control" id="name"  formControlName="name" placeholder="Introduce tu nombre completo" required>
+      </div>
+      <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="alert alert-danger mt-3" role="alert">
+        Nombre invalido
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico</label>
+        <input type="email" class="form-control" id="email" placeholder="Introduce tu correo electrónico" formControlName="email" required>
+      </div>
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="alert alert-danger mt-3" role="alert">
+        Correo invalido
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" placeholder="Crea una contraseña" formControlName="password" required>
+      </div>
+      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="alert alert-danger mt-3" role="alert">
+        La contraseña es obligatoria y debe tener al menos 6 caracteres.
+      </div>
+      <div class="mb-3">
+        <label for="confirm_password" class="form-label">Confirmar Contraseña</label>
+        <input type="password" class="form-control" id="confirm_password" placeholder="Confirma tu contraseña" formControlName="confirm_password" required>
+      </div>
+      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="alert alert-danger mt-3" role="alert">
+        Debe confirmar la contrañseña
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Crear Cuenta</button>
+      <p class="mt-3 text-center">¿Ya tienes cuenta? <a href="login">Iniciar sesión</a></p>
+    </form>
+  </div>

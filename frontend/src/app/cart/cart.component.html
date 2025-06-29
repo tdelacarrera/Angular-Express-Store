@@ -1,0 +1,53 @@
+  <!-- Carrito de Compras -->
+  <div class="container my-5">
+    <h2 class="mb-4">Tu Carrito de Compras</h2>
+    
+    <!-- Tabla de productos en el carrito -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Producto</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Precio por unidad</th>
+          <th scope="col">Precio total</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>
+            <p>{{item.name}}</p>
+          </td>
+          <td>
+            <p>{{item.quantity}}</p>
+          </td>
+          <td> 
+            <p>${{item.price}}</p>
+          </td>
+          <td>
+             <p>${{item.price*item.quantity}}</p>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="removeCartItem(item.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Resumen de la compra -->
+    <div class="row">
+      <div class="col-md-8">
+        <a href="#" class="btn btn-secondary">Seguir Comprando</a>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Resumen</h4>
+            <hr>
+            <h5 class="card-title">Precio final: ${{totalPrice}}</h5>
+            <a href="checkout.html" class="btn btn-primary btn-lg w-100">Finalizar Compra</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

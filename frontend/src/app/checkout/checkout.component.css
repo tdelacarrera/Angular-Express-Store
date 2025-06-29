@@ -1,0 +1,7 @@
+    .form-container {
+      max-width: 800px;
+      margin: 50px auto;
+    }
+    .card-body input {
+      margin-bottom: 10px;
+    }

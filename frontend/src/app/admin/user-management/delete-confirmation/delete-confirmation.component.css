@@ -1,0 +1,5 @@
+:host-context(cdk-dialog-container){
+    display: block;
+    background-color: white;
+    padding: 2rem;
+}

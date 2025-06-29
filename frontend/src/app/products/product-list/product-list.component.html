@@ -1,0 +1,46 @@
+  <!-- Contenido principal -->
+  <div class="content container my-5">
+    <h2 class="text-center mb-4">Nuestros Productos</h2>
+    <div class="row">
+
+   
+      <div class="col-md-4 mb-4" *ngFor="let product of products;">
+        <div class="card product-card">
+          <img src="{{baseApiUrl}}/uploads/{{product.path}}" class="card-img-top" alt="{{product.name}}">
+          <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.price}}</p>
+            <a href="products/{{product.id}}" class="btn btn-primary">Detalles</a>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+
+  <!-- Paginación -->
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <!-- Botón de página anterior -->
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="onChangePage(currentPage - 1)" aria-label="Previous" [disabled]="currentPage === 1">
+          <span aria-hidden="true">&laquo;</span>
+        </button>
+      </li>
+
+      <!-- Botones de páginas numeradas -->
+      <li *ngFor="let page of pages" 
+          class="page-item" 
+          [class.active]="page === currentPage">
+        <button class="page-link" (click)="onChangePage(page)">
+          {{ page }}
+        </button>
+      </li>
+
+      <!-- Botón de página siguiente -->
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <button class="page-link" (click)="onChangePage(currentPage + 1)" aria-label="Next" [disabled]="currentPage === totalPages">
+          <span aria-hidden="true">&raquo;</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
