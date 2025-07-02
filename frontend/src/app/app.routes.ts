@@ -7,6 +7,7 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductManagementComponent } from './admin/product-management/product-management.component';
+import { PurchaseManagementComponent } from './admin/purchase-management/purchase-management.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -17,4 +18,5 @@ export const routes: Routes = [
     { path: 'products/:id', component: ProductDetailComponent },
     { path: 'checkout', component: CheckoutComponent },
     { path: 'admin/products', component: ProductManagementComponent },
+    { path: 'admin/purchases', component: PurchaseManagementComponent },
 ];

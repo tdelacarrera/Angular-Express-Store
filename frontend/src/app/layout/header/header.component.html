@@ -19,6 +19,9 @@
           <li *ngIf="isAdmin && isAuth" class="nav-item">
             <a class="nav-link" routerLink="/admin/products">Administrar productos</a>
           </li>
+          <li *ngIf="isAdmin && isAuth" class="nav-item">
+            <a class="nav-link" routerLink="/admin/purchases">Ver compras</a>
+          </li>
           <li *ngIf="!isAuth" class="nav-item">
             <a class="nav-link" routerLink="/login">Iniciar sesión</a>
           </li>

@@ -35,7 +35,9 @@
     <div *ngIf="createModal.get('confirm_password')?.invalid && createModal.get('confirm_password')?.touched" class="text-danger">
       Debe confirmar la contraseña
     </div>
-    <button type="submit" class="btn btn-primary w-100">Agregar Usuario</button>
-    <button type="button" class="btn btn-warning w-100" (click)="onCloseModal()">Cancelar</button>
+    <div class="d-grid gap-2">
+     <button type="submit" class="btn btn-success">Agregar Usuario</button>
+     <button type="button" class="btn btn-outline-secondary" (click)="onCloseModal()">Cancelar</button>
+    </div>
   </form>
 </div>

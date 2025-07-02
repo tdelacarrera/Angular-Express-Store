@@ -41,7 +41,7 @@ export class RegisterComponent {
         console.log('usuario creado', data)
         this.registerSucess = true;
         setTimeout(() => {
-            this.router.navigate(['/products']);
+            this.router.navigate(['/login']);
         }, 1000 );
       },
       error: error => {

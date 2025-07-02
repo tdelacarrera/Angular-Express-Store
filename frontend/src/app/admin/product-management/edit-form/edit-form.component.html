@@ -29,8 +29,10 @@
             <label for="image" class="form-label">Imagen</label>
             <input type="file" class="form-control" id="image" required>
         </div>
-
-        <button type="submit" class="btn btn-success w-100">Guardar Producto</button>
-        <button type="button" class="btn btn-warning w-100" (click)="onCloseModal()">Cancelar</button>
+        
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-success">Guardar Producto</button>
+            <button type="button" class="btn btn-outline-secondary" (click)="onCloseModal()">Cancelar</button>
+        </div>
     </form>
 </div>

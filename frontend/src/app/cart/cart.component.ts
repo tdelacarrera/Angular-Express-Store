@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { ICartItem } from '../models/cart-item.model';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../services/api.service';
+import { IPurchase } from '../models/purchase.model';
+import { IUser } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +17,7 @@ export class CartComponent implements OnInit {
   cartItems: ICartItem[] = [];
   totalPrice: number = 0;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private apiService: ApiService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
@@ -33,4 +37,37 @@ export class CartComponent implements OnInit {
     this.calculateTotal();
 
   }
+
+finishPurchase() {
+  const user = this.authService.getUser();
+
+  if (!user) {
+    return;
+  }
+
+  const purchase: IPurchase = {
+    id: 0,
+    price: this.totalPrice,
+    user: user!,
+    products: this.cartItems.map(item => ({
+      productId: item.id,
+      name: item.name,
+      quantity: item.quantity
+    }))
+  };
+
+  this.apiService.createPurchase(purchase).subscribe({
+    next: (response) => {
+      alert('Compra realizada con éxito!');
+      this.cartService.clearCart();
+      this.cartItems = [];
+      this.totalPrice = 0;
+    },
+    error: (err) => {
+      alert('Error al realizar la compra. Intente de nuevo.');
+      console.error(err);
+    }
+  });
+  this.cartService.clearCart();
+}
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IProduct } from '../models/product.model';
 import { IUser } from '../models/user.model';
+import { IPurchase } from '../models/purchase.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class ApiService {
   baseURL = "http://localhost:3000"
 
   constructor(private _httpClient: HttpClient) { }
+
+  //Product
 
   public getProductsPage(page: number, productsPerPage: number) : Observable<IProduct> {
     return this._httpClient.get<IProduct>(`${this.baseURL}/products?_page=${page}&_per_page=${productsPerPage}`);
@@ -26,21 +29,13 @@ export class ApiService {
         return this._httpClient.get<IProduct>(`${this.baseURL}/products/${id}`);
   }
 
-  public getUsers() : Observable<IUser[]> {
-        return this._httpClient.get<IUser[]>(`${this.baseURL}/users`); 
-  }
-
   public getUserById(id: number) : Observable<IUser>{
     return this._httpClient.get<IUser>(`${this.baseURL}/users?id=${id}`)
   }
-/*
-  public createProduct(product: IProduct) : Observable<IProduct>{
-    return this._httpClient.post<IProduct>(`${this.baseURL}/products`, product)
-  }
-*/
-    public createProduct(formData: FormData): Observable<FormData> {
+
+   public createProduct(formData: FormData): Observable<FormData> {
     return this._httpClient.post<FormData>(`${this.baseURL}/products`, formData);
-}
+  }
 
   public updateProduct(product: IProduct) : Observable<IProduct>{
     return this._httpClient.put<IProduct>(`${this.baseURL}/products/${product.id}`, product)
@@ -48,6 +43,23 @@ export class ApiService {
 
   public deleteProduct(id: number): Observable<IProduct>{
     return this._httpClient.delete<IProduct>(`${this.baseURL}/products/${id}`);
+  }
+
+  //Purchase
+
+  public getPurchases() : Observable<IPurchase[]> {
+        return this._httpClient.get<IPurchase[]>(`${this.baseURL}/purchases`); 
+  }
+
+  public createPurchase(purchase: IPurchase) : Observable<IPurchase>{
+    return this._httpClient.post<IPurchase>(`${this.baseURL}/purchases`, purchase)
+  }
+
+  //User
+
+  
+  public getUsers() : Observable<IUser[]> {
+        return this._httpClient.get<IUser[]>(`${this.baseURL}/users`); 
   }
 
   public createUser(user: IUser) : Observable<IUser>{

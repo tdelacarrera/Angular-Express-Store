@@ -1,5 +1,7 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ICartItem } from '../models/cart-item.model';
+import { ApiService } from './api.service';
+import { IPurchase } from '../models/purchase.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +9,7 @@ import { ICartItem } from '../models/cart-item.model';
 export class CartService {
   private cartItems: ICartItem[] = [];
 
-  constructor() { 
+  constructor(private apiService: ApiService) { 
     const cart = localStorage.getItem('cart');
     if (cart) {
       this.cartItems = JSON.parse(cart)
@@ -49,5 +51,6 @@ export class CartService {
     this.cartItems = [];
     localStorage.removeItem('cart');
   }
+
 
 }
