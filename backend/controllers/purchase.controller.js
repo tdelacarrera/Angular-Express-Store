@@ -23,9 +23,6 @@ const getPurchases = async (req, res) => {
 
         const purchasesMap = {};
 
-
-        
-
         rows.forEach(row => {
             if (!purchasesMap[row.purchaseId]) {
                 purchasesMap[row.purchaseId] = {
@@ -106,6 +103,7 @@ const getPurchaseById = async (req, res) => {
 
 const createPurchase = async (req, res) => {
     const { userId, products, price } = req.body;
+    console.log(req.body)
 
     const connection = await pool.getConnection();
 
