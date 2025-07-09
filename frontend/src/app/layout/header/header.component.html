@@ -7,7 +7,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
+          <li *ngIf="!isAdmin" class="nav-item">
             <a class="nav-link" routerLink="/products">Productos</a>
           </li>
            <li *ngIf="!isAdmin && isAuth" class="nav-item">

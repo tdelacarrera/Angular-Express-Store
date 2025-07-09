@@ -2,9 +2,18 @@ import { pool } from '../database.js';
 
 
 const getProducts = async (req, res) => {
+    const { page, pageSize } = req.query;
+    const offset = (page - 1) * pageSize;
+
     try {
-        const [rows] = await pool.query('SELECT * FROM products');
-        res.status(200).json(rows);
+        const [rows] = await pool.query('SELECT * FROM products LIMIT ? OFFSET ?', [parseInt(pageSize), parseInt(offset)]);
+        const totalProducts = countResult[0].total;
+        res.status(200).json({
+            users: rows,
+            totalProducts,
+            page,
+            pageSize
+        });
     } catch (error) {
         console.error('Error al obtener los productos:', error);
         res.status(500).json({ message: 'Error interno del servidor' });

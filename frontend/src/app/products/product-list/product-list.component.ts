@@ -13,37 +13,44 @@ export class ProductListComponent implements OnInit{
 
  constructor(private apiService: ApiService) {}
   products?: Array<IProduct>
-  currentPage: number = 1;
   totalProducts: number = 0;
+  currentPage: number = 1;
+  pageSize: number = 9;
   totalPages: number = 0;
-  productsPerPage: number = 12;
   baseApiUrl = "";
-  pages: number[] = []; 
 
   ngOnInit(): void {
     this.loadProducts()
-    this.loadTotalProducts()
     this.baseApiUrl = this.apiService.baseURL;
   }
 
-  loadTotalProducts() {
-    this.apiService.getProducts().subscribe((data: any) => {
-    this.totalProducts = data.length;  // Obtener la cantidad total de productos
-    this.totalPages = Math.ceil(this.totalProducts / this.productsPerPage);  // Calcular el total de páginas
-    this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    });
-  }
-
-  loadProducts() {
-    this.apiService.getProductsPage(this.currentPage, this.productsPerPage).subscribe((data: any) => {
-       this.products = Array.isArray(data) ? data : data.data; 
-    });
-  }
   onChangePage(page: number){
     if(page > 0 && page <= this.totalPages){
       this.currentPage = page
       this.loadProducts()
     }
   }
+
+  loadProducts(): void {
+  this.apiService.getUsers(this.currentPage, this.pageSize).subscribe((data: any) => {
+    this.products = data.users;
+    this.totalProducts = data.totalUsers;
+    this.totalPages = Math.ceil(this.totalProducts / this.pageSize);
+  });
+}
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadProducts();
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadProducts();
+    }
+  }
+
 } 
 

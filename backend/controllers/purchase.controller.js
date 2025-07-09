@@ -23,6 +23,9 @@ const getPurchases = async (req, res) => {
 
         const purchasesMap = {};
 
+
+        
+
         rows.forEach(row => {
             if (!purchasesMap[row.purchaseId]) {
                 purchasesMap[row.purchaseId] = {

@@ -22,9 +22,7 @@ export class CartService {
     localStorage.setItem('cart', JSON.stringify(this.cartItems));
   }
 
-
-
-    updateCartItem(item: ICartItem) {
+  updateCartItem(item: ICartItem) {
     const index = this.cartItems.findIndex(i => i.id === item.id);
 
     if (index !== -1) {
@@ -51,6 +49,4 @@ export class CartService {
     this.cartItems = [];
     localStorage.removeItem('cart');
   }
-
-
 }

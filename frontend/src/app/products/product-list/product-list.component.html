@@ -17,30 +17,8 @@
       
   </div>
 
-  <!-- Paginación -->
-  <nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-      <!-- Botón de página anterior -->
-      <li class="page-item" [class.disabled]="currentPage === 1">
-        <button class="page-link" (click)="onChangePage(currentPage - 1)" aria-label="Previous" [disabled]="currentPage === 1">
-          <span aria-hidden="true">&laquo;</span>
-        </button>
-      </li>
-
-      <!-- Botones de páginas numeradas -->
-      <li *ngFor="let page of pages" 
-          class="page-item" 
-          [class.active]="page === currentPage">
-        <button class="page-link" (click)="onChangePage(page)">
-          {{ page }}
-        </button>
-      </li>
-
-      <!-- Botón de página siguiente -->
-      <li class="page-item" [class.disabled]="currentPage === totalPages">
-        <button class="page-link" (click)="onChangePage(currentPage + 1)" aria-label="Next" [disabled]="currentPage === totalPages">
-          <span aria-hidden="true">&raquo;</span>
-        </button>
-      </li>
-    </ul>
-  </nav>
+<div class="d-flex justify-content-between">
+  <button class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+  <span>Página {{currentPage}} de {{totalPages}}</span>
+  <button class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
+</div>

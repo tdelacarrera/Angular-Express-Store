@@ -37,35 +37,30 @@ export class CartComponent implements OnInit {
     this.calculateTotal();
 
   }
-
-finishPurchase() {
-  const user = this.authService.getUser();
-
-  if (!user) {
-    return;
-  }
+  finishPurchase() {
+    const user = this.authService.getUser();
+      if (!user) {
+        return;
+      }
 
   const purchase: IPurchase = {
     id: 0,
     price: this.totalPrice,
-    user: user!,
+    user: user,
     products: this.cartItems.map(item => ({
       productId: item.id,
       name: item.name,
       quantity: item.quantity
     }))
   };
-
   this.apiService.createPurchase(purchase).subscribe({
     next: (response) => {
-      alert('Compra realizada con éxito!');
       this.cartService.clearCart();
       this.cartItems = [];
       this.totalPrice = 0;
     },
-    error: (err) => {
-      alert('Error al realizar la compra. Intente de nuevo.');
-      console.error(err);
+    error: (error) => {
+      console.error(error);
     }
   });
   this.cartService.clearCart();

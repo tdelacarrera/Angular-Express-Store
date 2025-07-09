@@ -16,21 +16,12 @@ export class ApiService {
 
   //Product
 
-  public getProductsPage(page: number, productsPerPage: number) : Observable<IProduct> {
-    return this._httpClient.get<IProduct>(`${this.baseURL}/products?_page=${page}&_per_page=${productsPerPage}`);
-
-  }
-  
-  public getProducts(): Observable<IProduct[]> {
-    return this._httpClient.get<IProduct[]>(`${this.baseURL}/products`);
+  public getProducts(currentPage: number, pageSize: number): Observable<IProduct[]> {
+    return this._httpClient.get<IProduct[]>(`${this.baseURL}/products?page=${currentPage}&pageSize=${pageSize}`);
   }
 
   public getProductById(id: number)  : Observable<IProduct> {
         return this._httpClient.get<IProduct>(`${this.baseURL}/products/${id}`);
-  }
-
-  public getUserById(id: number) : Observable<IUser>{
-    return this._httpClient.get<IUser>(`${this.baseURL}/users?id=${id}`)
   }
 
    public createProduct(formData: FormData): Observable<FormData> {
@@ -58,6 +49,10 @@ export class ApiService {
   //Users
   public getUsers(currentPage: number, pageSize: number): Observable<IUser[]> {
     return this._httpClient.get<IUser[]>(`${this.baseURL}/users?page=${currentPage}&pageSize=${pageSize}`);
+  }
+
+  public getUserById(id: number) : Observable<IUser>{
+    return this._httpClient.get<IUser>(`${this.baseURL}/users?id=${id}`)
   }
 
   public createUser(user: IUser) : Observable<IUser>{

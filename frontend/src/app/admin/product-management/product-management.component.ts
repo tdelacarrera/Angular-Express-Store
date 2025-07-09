@@ -17,11 +17,10 @@ import { DeleteFormComponent } from './delete-form/delete-form.component';
 export class ProductManagementComponent implements OnInit {
 
   products?: Array<IProduct>
-  currentPage: number = 1;
   totalProducts: number = 0;
+  currentPage: number = 1;
+  pageSize: number = 9;
   totalPages: number = 0;
-  productsPerPage: number = 12;
-  pages: number[] = [];
   baseApiUrl = "";
 
 
@@ -30,21 +29,6 @@ export class ProductManagementComponent implements OnInit {
   ngOnInit(): void {
     this.baseApiUrl = this.apiService.baseURL;
     this.loadProducts()
-    this.loadTotalProducts()
-  }
-
-  loadTotalProducts() {
-    this.apiService.getProducts().subscribe((data: IProduct[]) => {
-      this.totalProducts = data.length;
-      this.totalPages = Math.ceil(this.totalProducts / this.productsPerPage);
-      this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    });
-  }
-
-  loadProducts() {
-    this.apiService.getProductsPage(this.currentPage, this.productsPerPage).subscribe((data: any) => {
-      this.products = Array.isArray(data) ? data : data.data;
-    });
   }
 
   onChangePage(page: number) {
@@ -94,6 +78,28 @@ export class ProductManagementComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  loadProducts(): void {
+  this.apiService.getUsers(this.currentPage, this.pageSize).subscribe((data: any) => {
+    this.products = data.users;
+    this.totalProducts = data.totalUsers;
+    this.totalPages = Math.ceil(this.totalProducts / this.pageSize);
+  });
+}
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadProducts();
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadProducts();
+    }
+  }
+
 }
 
 
