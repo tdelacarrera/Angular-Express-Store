@@ -1,4 +1,3 @@
-<!-- Contenido principal -->
 <div class="container my-5">
   <h2 class="mb-4">Listado de Compras</h2>
   <table class="table table-striped">
@@ -28,4 +27,11 @@
       </tr>
     </tbody>
   </table>
+  
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+    <span>Página {{currentPage}} de {{totalPages}}</span>
+    <button class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
+  </div>
+
 </div>

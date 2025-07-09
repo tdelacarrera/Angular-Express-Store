@@ -4,9 +4,20 @@ import jwt from 'jsonwebtoken';
 
 
 const getUsers = async (req, res) => {
+    const { page, pageSize } = req.query;
+    const offset = (page - 1) * pageSize;
+    
     try {
-        const [rows] = await pool.query('SELECT * FROM users');
-        res.status(200).json(rows);
+        const [rows] = await pool.query('SELECT * FROM users LIMIT ? OFFSET ?', [parseInt(pageSize), parseInt(offset)]);
+        const [countResult] = await pool.query('SELECT COUNT(*) AS total FROM users');
+        const totalUsers = countResult[0].total;
+
+        res.status(200).json({
+            users: rows,
+            totalUsers,
+            page,
+            pageSize
+        });
     } catch (error) {
         console.error('Error al obtener los usuarios:', error);
         res.status(500).json({ message: 'Error interno del servidor' });

@@ -1,11 +1,8 @@
-  <!-- Contenido principal -->
   <div class="container my-5">
 
-    <!-- Botón para agregar nuevo usuario -->
     <h2 class="mb-4">Gestión de Usuarios</h2>
     <button class="btn btn-primary mb-3" (click)="openCreateModal()">Agregar Nuevo Usuario</button>
 
-    <!-- Tabla de usuarios -->
     <table class="table table-striped">
       <thead>
         <tr>
@@ -27,9 +24,15 @@
             <button class="btn btn-danger btn-sm" (click)="openDeleteModal(user)">Eliminar</button>
           </td>
         </tr>
-        <!-- Más usuarios pueden ir aquí -->
       </tbody>
     </table>
+    
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+      <span>Página {{currentPage}} de {{totalPages}}</span>
+      <button class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
+    </div>
+
   </div>
 
 

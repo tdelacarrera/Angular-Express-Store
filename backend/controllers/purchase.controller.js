@@ -1,6 +1,9 @@
 import { pool } from '../database.js';
 
 const getPurchases = async (req, res) => {
+    const { page, pageSize } = req.query;
+    const offset = (page - 1) * pageSize;
+
     try {
         const [rows] = await pool.query(`
             SELECT p.id AS purchaseId, p.userId, p.price, 
@@ -11,7 +14,12 @@ const getPurchases = async (req, res) => {
             JOIN users u ON p.userId = u.id
             JOIN purchase_product pp ON pp.purchaseId = p.id
             JOIN products pr ON pr.id = pp.productId
-        `);
+            LIMIT ? OFFSET ?
+        `, [parseInt(pageSize), parseInt(offset)]);
+    
+        const [countResult] = await pool.query('SELECT COUNT(*) AS total FROM purchases');
+        const totalPurchases = countResult[0].total;
+        const totalPages = Math.ceil(totalPurchases / pageSize);
 
         const purchasesMap = {};
 
@@ -38,7 +46,13 @@ const getPurchases = async (req, res) => {
 
         const purchases = Object.values(purchasesMap);
 
-        res.status(200).json(purchases);
+        res.status(200).json({
+            purchases,
+            totalPurchases,
+            totalPages,
+            page,
+            pageSize
+        });
     } catch (error) {
         console.error('Error al obtener las compras:', error);
         res.status(500).json({ message: 'Error interno del servidor' });

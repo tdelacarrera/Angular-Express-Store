@@ -14,14 +14,36 @@ import { IPurchase } from '../../models/purchase.model';
 
 export class PurchaseManagementComponent implements OnInit {
   purchases?: Array<IPurchase>
+  totalPurchases: number = 0;
+  currentPage: number = 1;
+  pageSize: number = 10;
+  totalPages: number = 0;
 
 
   constructor(private dialog: Dialog, private apiService: ApiService) {}
   ngOnInit(): void {
-    this.apiService.getPurchases().subscribe((data: IPurchase[]) => {
-      this.purchases = data
-          console.log(this.purchases);
-    })
+    this.loadPurchases()
+  }
+  
+  loadPurchases(): void {
+    this.apiService.getPurchases(this.currentPage, this.pageSize).subscribe((data: any) => {
+    this.purchases = data.purchases;
+    this.totalPurchases = data.totalPurchases;
+    this.totalPages = Math.ceil(this.totalPurchases / this.pageSize);
+  });
+}
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadPurchases();
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadPurchases();
+    }
   }
 }
 

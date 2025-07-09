@@ -17,12 +17,15 @@ import { DeleteConfirmationComponent } from './delete-confirmation/delete-confir
 
 export class UserManagementComponent implements OnInit {
   users?: Array<IUser>
+  totalUsers: number = 0;
+  currentPage: number = 1;
+  pageSize: number = 10;
+  totalPages: number = 0;
+
 
   constructor(private dialog: Dialog, private apiService: ApiService) {}
   ngOnInit(): void {
-    this.apiService.getUsers().subscribe((data: IUser[]) => {
-      this.users = data
-    })
+    this.loadUsers()
   }
 
 
@@ -77,6 +80,27 @@ export class UserManagementComponent implements OnInit {
       error: error =>
         console.log('error al eliminar usuario', error)
     })
+  }
+  
+  loadUsers(): void {
+  this.apiService.getUsers(this.currentPage, this.pageSize).subscribe((data: any) => {
+    this.users = data.users;
+    this.totalUsers = data.totalUsers;
+    this.totalPages = Math.ceil(this.totalUsers / this.pageSize);
+  });
+}
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadUsers();
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadUsers();
+    }
   }
 
 }

@@ -47,19 +47,17 @@ export class ApiService {
 
   //Purchase
 
-  public getPurchases() : Observable<IPurchase[]> {
-        return this._httpClient.get<IPurchase[]>(`${this.baseURL}/purchases`); 
+  public getPurchases(currentPage: number, pageSize: number) : Observable<IPurchase[]> {
+        return this._httpClient.get<IPurchase[]>(`${this.baseURL}/purchases?page=${currentPage}&pageSize=${pageSize}`);
   }
 
   public createPurchase(purchase: IPurchase) : Observable<IPurchase>{
     return this._httpClient.post<IPurchase>(`${this.baseURL}/purchases`, purchase)
   }
 
-  //User
-
-  
-  public getUsers() : Observable<IUser[]> {
-        return this._httpClient.get<IUser[]>(`${this.baseURL}/users`); 
+  //Users
+  public getUsers(currentPage: number, pageSize: number): Observable<IUser[]> {
+    return this._httpClient.get<IUser[]>(`${this.baseURL}/users?page=${currentPage}&pageSize=${pageSize}`);
   }
 
   public createUser(user: IUser) : Observable<IUser>{
