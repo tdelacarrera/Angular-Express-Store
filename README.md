@@ -37,7 +37,11 @@ npm install
 cp .env.example .env
 ```
 
-**4. Start the server**
+**4. Create the MySQL database**
+
+Create a new database and update your .env
+
+**5. Start the server**
 
 ```bash
 npm run dev
