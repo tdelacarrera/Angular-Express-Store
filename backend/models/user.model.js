@@ -1,4 +1,4 @@
-import { Model, DataTypes } from "sequelize";
+/*import { Model, DataTypes } from "sequelize";
 import { sequelize } from '../sequelize.js';
 
 class User extends Model {}
@@ -35,3 +35,4 @@ User.init({
 });
 
 export { User };
+*/

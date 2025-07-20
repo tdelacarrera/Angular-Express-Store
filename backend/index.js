@@ -6,11 +6,6 @@ import { fileURLToPath } from 'url';
 import usersRoutes from './routes/user.routes.js';
 import productsRoutes from './routes/products.routes.js'
 import purchasesRoutes from './routes/purchases.routes.js'
-import { sequelize } from './sequelize.js';
-import { Product } from './models/product.model.js'; 
-import { User } from './models/user.model.js'; 
-import { Purchase } from './models/purchase.model.js';
-import { PurchaseProduct } from './models/purchase_product.model.js';
 
 const app = express()
 const __filename = fileURLToPath(import.meta.url);
@@ -33,12 +28,3 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log('Server running on port', PORT)
 })
-
-sequelize.sync({ force: true })
-    .then(() => {
-        console.log('Base de datos sincronizada');
-    })
-    .catch((error) => {
-        console.error('Error al sincronizar la base de datos:', error);
-    });
-

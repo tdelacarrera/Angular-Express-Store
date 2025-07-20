@@ -1,4 +1,4 @@
-# Store Web Application
+# About this project
 
 This is a web store application built with **Angular** for the frontend and **Express.js** for the backend.
 
@@ -12,60 +12,54 @@ This is a web store application built with **Angular** for the frontend and **Ex
 
 **1. Clone the repository**
 
-```bash
-git clone https://github.com/tdelacarrera/angular-express-store.git
-cd angular-express-store
-```
+    git clone https://github.com/tdelacarrera/angular-express-store.git
+    cd angular-express-store
 
 ## ⚙️ Backend Setup
 
 **1. Navigate to backend folder**
 
-```bash
-cd backend
-```
+    cd backend
 
 **2. Install dependencies**
 
-```bash
-npm install
-```
+    npm install
 
 **3. Create environment file**
 
-```bash
-cp .env.example .env
-```
+    cp .env.example .env
 
-**4. Create the MySQL database**
+**4. Create database, run migrations and seed data**
 
-Create a new database and update your .env
+    npx sequelize-cli db:create
+    npx sequelize-cli db:migrate
+    npx sequelize-cli db:seed:all
 
 **5. Start the server**
 
-```bash
-npm run dev
-```
+    npm run dev
 
 ## 🌐 Frontend Setup 
 
 **1. Navigate to frontend folder**
 
-```bash
-cd frontend
-```
+    cd frontend
 
 **2. Install dependencies**
 
-```bash
-npm install
-```
+    npm install
 
 **3. Start the server**
 
-```bash
-ng serve
-```
+    ng serve
+
+
+You can use following login credentials.
+
+    Email: admin@example.com
+
+    Password: admin
+
 ✅ Ready!
 
 Visit http://localhost:4200 to view the application in your browser.
