@@ -10,7 +10,7 @@
 <div class="row" id="productos-list">
   <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let product of products">
     <div class="card">
-      <img src="{{baseApiUrl}}/uploads/{{product.path}}" class="card-img-top product-img" alt="Producto">
+      <img [src]="baseApiUrl + '/uploads/' + product.path" alt="Producto"  class="card-img-top product-img" (error)="onImageError($event)">
       <div class="card-body">
         <h5 class="card-title">{{product?.id}}</h5>
         <h5 class="card-title">{{product?.name}}</h5>

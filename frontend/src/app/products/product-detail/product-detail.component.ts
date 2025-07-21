@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from '../../models/product.model';
 import { ICartItem } from '../../models/cart-item.model';
 import { CommonModule } from '@angular/common';
@@ -22,7 +22,7 @@ export class ProductDetailComponent implements OnInit {
   addToCartForm: FormGroup
   baseApiUrl = "";
 
-  constructor(private apiService: ApiService, private cartService: CartService, private _route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private apiService: ApiService, private cartService: CartService, private _route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
     this.addToCartForm = this.fb.group({
       quantity: [1, [Validators.required, Validators.min(1)]]
     });
@@ -80,4 +80,15 @@ export class ProductDetailComponent implements OnInit {
     }, 3000
     );
   }
+
+    onImageError(event: Event) : void {
+      const img = event.target as HTMLImageElement;
+      img.src = 'default-image.jpg';
+    }
+
+    goBack(): void {
+      this.router.navigate(['/products']);
+    }
+
+
 }

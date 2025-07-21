@@ -32,9 +32,9 @@ export class ProductListComponent implements OnInit{
   }
 
   loadProducts(): void {
-  this.apiService.getUsers(this.currentPage, this.pageSize).subscribe((data: any) => {
-    this.products = data.users;
-    this.totalProducts = data.totalUsers;
+  this.apiService.getProducts(this.currentPage, this.pageSize).subscribe((data: any) => {
+    this.products = data.products;
+    this.totalProducts = data.totalProducts;
     this.totalPages = Math.ceil(this.totalProducts / this.pageSize);
   });
 }
@@ -50,6 +50,11 @@ export class ProductListComponent implements OnInit{
       this.currentPage--;
       this.loadProducts();
     }
+  }
+
+  onImageError(event: Event) : void {
+    const img = event.target as HTMLImageElement;
+    img.src = 'default-image.jpg';
   }
 
 } 

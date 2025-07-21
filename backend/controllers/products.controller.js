@@ -7,9 +7,10 @@ const getProducts = async (req, res) => {
 
     try {
         const [rows] = await pool.query('SELECT * FROM products LIMIT ? OFFSET ?', [parseInt(pageSize), parseInt(offset)]);
+        const [countResult] = await pool.query('SELECT COUNT(*) AS total FROM products');
         const totalProducts = countResult[0].total;
         res.status(200).json({
-            users: rows,
+            products: rows,
             totalProducts,
             page,
             pageSize

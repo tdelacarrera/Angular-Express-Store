@@ -16,8 +16,8 @@ export class ApiService {
 
   //Product
 
-  public getProducts(currentPage: number, pageSize: number): Observable<IProduct[]> {
-    return this._httpClient.get<IProduct[]>(`${this.baseURL}/products?page=${currentPage}&pageSize=${pageSize}`);
+  public getProducts(currentPage: number, pageSize: number): Observable<IUser[]> {
+    return this._httpClient.get<IUser[]>(`${this.baseURL}/products?page=${currentPage}&pageSize=${pageSize}`);
   }
 
   public getProductById(id: number)  : Observable<IProduct> {
