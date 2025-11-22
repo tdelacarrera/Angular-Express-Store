@@ -3,17 +3,18 @@
     <h2 class="text-center mb-4">Nuestros Productos</h2>
     <div class="row">
 
-   
-      <div class="col-md-4 mb-4" *ngFor="let product of products;">
+       @for (product of products; track product.id) {
+      <div class="col-md-4 mb-4">
         <div class="card product-card">
           <img [src]="baseApiUrl + '/uploads/' + product.path" class="card-img-top" alt="{{product.name}}" (error)="onImageError($event)">
           <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">{{product.price}}</p>
-            <a href="products/{{product.id}}" class="btn btn-primary">Detalles</a>
+            <a [routerLink]="['/products', product.id]" class="btn btn-primary">Detalles</a>
           </div>
         </div>
       </div>
+    }
       
   </div>
 

@@ -1,11 +1,11 @@
 import { Component, OnInit,NgModule } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { CommonModule } from '@angular/common';
 import { IProduct } from '../../models/product.model';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-product-list',
-  imports: [CommonModule],
+  imports: [RouterLink],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
